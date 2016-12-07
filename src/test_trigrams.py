@@ -3,11 +3,11 @@
 import pytest
 
 PARAMS_TABLE = [
-    ['One night', 'it'],
+    ['one night', 'it'],
     ['when my', 'way'],
     ['were brilliantly', 'lit'],
-    ['He was', 'pacing'],
-    ['He was', 'at'],
+    ['he was', 'pacing'],
+    ['he was', 'at'],
     ['was shown', 'up'],
     ['his attitude', 'and']
 ]
