@@ -2,6 +2,7 @@
 
 
 import io
+import re
 
 
 def main(src, num):
@@ -25,10 +26,7 @@ def parse_into_dict(src):
 
 
 def cleanup(text):
-    text = text.replace('\n', ' ')
-    text = text.replace('--', ' ')
-    text = text.lower().replace('[^a-z0-9.\-]', ' ')
-    text = text.replace(',', '')
-    text = text.replace(')', ' ')
-    text = text.replace('(', ' ')
-    return text
+    clean_text = text.lower().replace('\n', ' ')
+    clean_text = clean_text.replace('--', ' ')
+    clean_text = re.sub('[^a-zA-Z0-9.\-]', ' ', clean_text)
+    return clean_text
