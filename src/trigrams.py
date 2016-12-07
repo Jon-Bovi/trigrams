@@ -2,6 +2,7 @@
 
 
 import io
+import random
 
 
 def main(src, num):
@@ -22,6 +23,18 @@ def parse_into_dict(src):
         except:
             tri_dict.setdefault(next_two, [text[i + 2]])
     return tri_dict
+
+
+def gen_text(dict, num):
+    """returns trigram text"""
+    key = random.choice(dict.keys())
+    text = key
+    for i in range(num - 2):
+        print(text)
+        word = random.choice(dict[key])
+        text += " " + word
+        key = key.split()[1] + " " + word
+    return text
 
 
 def cleanup(text):
