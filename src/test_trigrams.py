@@ -42,4 +42,4 @@ def test_cleanup():
         This is my favorite fiiind i>i, idjivn jqj99_0 9(( ()
         f2,jhfuhef..,v)) WORDS OK>>>. not b8&d
     """
-    assert len(re.sub('[a-zA-Z0-9\- ]', '', cleanup(fake))) == 0
+    assert len(re.sub('[a-zA-Z0-9.\- ]', '', cleanup(fake))) == 0
