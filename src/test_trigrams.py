@@ -17,7 +17,7 @@ PARAMS_TABLE = [
 
 @pytest.mark.parametrize("key, value", PARAMS_TABLE)
 def test_parse_into_dict(key, value):
-    """Test parse_into_dict """
+    """Test parse_into_dict."""
     from trigrams import parse_into_dict
     assert value in parse_into_dict('./sherlock.txt')[key]
 
