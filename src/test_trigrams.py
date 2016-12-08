@@ -2,7 +2,6 @@
 
 import pytest
 import re
-import random
 
 PARAMS_TABLE = [
     ['one night', 'it'],
@@ -17,17 +16,23 @@ PARAMS_TABLE = [
 
 @pytest.mark.parametrize("key, value", PARAMS_TABLE)
 def test_parse_into_dict(key, value):
-    """Test parse_into_dict """
+    """Test parse_into_dict."""
     from trigrams import parse_into_dict
     assert value in parse_into_dict('./sherlock.txt')[key]
 
 
-def test_main_length():
+def test_gen_text():
     """Test that text generator returns output of chosen length."""
-    from trigrams import main
-    num = random.randrange(0, 200)
-    output = main('./sherlock.txt', num)
-    assert len(output.split()) == num
+    from trigrams import gen_text
+    fake_dict = {
+        u'ipsum jaqgel': [u'sieds'],
+        u'iwqsad asdiwef': [u'asdiuwdas'],
+        u'jaqgel sieds': [u'iwqsad'],
+        u'lorem ipsum': [u'jaqgel'],
+        u'sieds iwqsad': [u'asdiwef']
+    }
+    output = gen_text(fake_dict, 200)
+    assert len(output.split()) == 200
 
 
 def test_cleanup():

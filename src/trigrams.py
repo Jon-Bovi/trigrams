@@ -31,7 +31,6 @@ def gen_text(dict, num):
     key = random.choice(list(dict.keys()))
     text = key
     for i in range(num - 2):
-        print(key)
         word = random.choice(dict[key])
         text += " " + word
         key = key.split()[1] + " " + word
@@ -46,3 +45,9 @@ def cleanup(text):
     clean_text = clean_text.replace('--', ' ')
     clean_text = re.sub('[^a-zA-Z0-9\- ]', '', clean_text)
     return clean_text
+
+if __name__ == '__main__':
+    import sys
+    user_input1 = sys.argv[1]
+    user_input2 = sys.argv[2]
+    print(main(user_input1, int(user_input2)))
