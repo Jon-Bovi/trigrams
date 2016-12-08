@@ -3,6 +3,7 @@
 
 import io
 import re
+import random
 
 
 def main(src, num):
@@ -25,8 +26,23 @@ def parse_into_dict(src):
     return tri_dict
 
 
+def gen_text(dict, num):
+    """Return trigram text."""
+    key = random.choice(list(dict.keys()))
+    text = key
+    for i in range(num - 2):
+        print(key)
+        word = random.choice(dict[key])
+        text += " " + word
+        key = key.split()[1] + " " + word
+        if key not in dict:
+            key = random.choice(list(dict.keys()))
+    return text
+
+
 def cleanup(text):
+    """Remove unwanted punctuation."""
     clean_text = text.lower().replace('\n', ' ')
     clean_text = clean_text.replace('--', ' ')
-    clean_text = re.sub('[^a-zA-Z0-9.\-]', ' ', clean_text)
+    clean_text = re.sub('[^a-zA-Z0-9\- ]', '', clean_text)
     return clean_text
