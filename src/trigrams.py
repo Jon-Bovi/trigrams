@@ -14,15 +14,13 @@ def main(src, num):
 
 def parse_into_dict(src):
     """Take file and return trigram dictionary."""
-    text = io.open(src, encoding="utf-8").read()
-    text = cleanup(text).split(' ')
+    text_file = io.open(src, encoding="utf-8")
+    text = cleanup(text_file.read()).split()
+    text_file.close()
     tri_dict = {}
     for i in range(len(text) - 3):
         next_two = text[i] + ' ' + text[i + 1]
-        try:
-            tri_dict[next_two].append(text[i + 2])
-        except:
-            tri_dict.setdefault(next_two, [text[i + 2]])
+        tri_dict.setdefault(next_two, []).append(text[i + 2])
     return tri_dict
 
 
@@ -50,6 +48,7 @@ def cleanup(text):
     clean_text = clean_text.decode().replace('--', ' ')
     clean_text = clean_text.replace('/', ' ')
     clean_text = clean_text.replace('  ', ' ')
+    clean_text = clean_text.replace('.', '')
     clean_text = re.sub('[^a-zA-Z0-9.\- ]', '', clean_text)
     return clean_text
 
