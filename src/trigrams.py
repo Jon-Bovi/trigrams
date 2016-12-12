@@ -43,13 +43,7 @@ def gen_text(dict, num):
 
 def cleanup(text):
     """Remove unwanted punctuation."""
-    clean_text = text.lower().encode().replace(b'\n', b' ')
-    clean_text = clean_text.replace(b'\t', b' ')
-    clean_text = clean_text.decode().replace('--', ' ')
-    clean_text = clean_text.replace('/', ' ')
-    clean_text = clean_text.replace('  ', ' ')
-    clean_text = clean_text.replace('.', '')
-    clean_text = re.sub('[^a-zA-Z0-9.\- ]', '', clean_text)
+    clean_text = re.sub('[^a-zA-Z0-9.\- ]', ' ', text.lower())
     return clean_text
 
 if __name__ == '__main__':
