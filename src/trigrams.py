@@ -18,7 +18,7 @@ def parse_into_dict(src):
     text = cleanup(text_file.read()).split()
     text_file.close()
     tri_dict = {}
-    for i in range(len(text) - 3):
+    for i in range(len(text) - 2):
         next_two = text[i] + ' ' + text[i + 1]
         tri_dict.setdefault(next_two, []).append(text[i + 2])
     return tri_dict
@@ -27,29 +27,19 @@ def parse_into_dict(src):
 def gen_text(dict, num):
     """Return trigram text."""
     key = random.choice(list(dict.keys()))
-    text = key
+    text = '...\n' + key
     for i in range(num - 2):
         word = random.choice(dict[key])
-        if text[-1] == '.' or word == 'i':
-            word = word.capitalize()
         text += " " + word
         key = key.split()[-1] + " " + word
         if key not in dict:
             key = random.choice(list(dict.keys()))
-    if text.strip()[-1] != '.':
-        text = text.strip() + '.'
-    return text[0:1].capitalize() + text[1:]
+    return text + '\n...'
 
 
 def cleanup(text):
     """Remove unwanted punctuation."""
-    clean_text = text.lower().encode().replace(b'\n', b' ')
-    clean_text = clean_text.replace(b'\t', b' ')
-    clean_text = clean_text.decode().replace('--', ' ')
-    clean_text = clean_text.replace('/', ' ')
-    clean_text = clean_text.replace('  ', ' ')
-    clean_text = clean_text.replace('.', '')
-    clean_text = re.sub('[^a-zA-Z0-9.\- ]', '', clean_text)
+    clean_text = re.sub('[^a-zA-Z0-9.\- ]', ' ', text)
     return clean_text
 
 if __name__ == '__main__':
