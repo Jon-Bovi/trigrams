@@ -4,11 +4,12 @@ import pytest
 import re
 
 PARAMS_TABLE = [
-    ['one night', 'it'],
+    ['One night', 'it'],
     ['when my', 'way'],
     ['were brilliantly', 'lit'],
-    ['he was', 'pacing'],
-    ['he was', 'at'],
+    ['He was', 'pacing'],
+    ['He was', 'at'],
+    ['he was', 'employing'],
     ['was shown', 'up'],
     ['his attitude', 'and']
 ]
@@ -26,13 +27,13 @@ def test_gen_text():
     from trigrams import gen_text
     fake_dict = {
         u'ipsum jaqgel': [u'sieds'],
-        u'iwqsad asdiwef': [u'asdiuwdas'],
+        u'iwqsad asdiwef': [u'asdiuwdas', u'not'],
         u'jaqgel sieds': [u'iwqsad'],
         u'lorem ipsum': [u'jaqgel'],
         u'sieds iwqsad': [u'asdiwef']
     }
     output = gen_text(fake_dict, 200)
-    assert len(output.split()) == 200
+    assert len(output.split()[1:-1]) == 200
 
 
 def test_cleanup():
