@@ -19,7 +19,7 @@ PARAMS_TABLE = [
 def test_parse_into_dict(key, value):
     """Test parse_into_dict."""
     from trigrams import parse_into_dict
-    assert value in parse_into_dict('./sherlock.txt')[key]
+    assert value in parse_into_dict('sherlock.txt')[key]
 
 
 def test_gen_text():
